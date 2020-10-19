@@ -2,6 +2,8 @@
 layout: default
 ---
 
+[cheatsheet](/cheatsheet/overview.html)/[kubernetes](/cheatsheet/kubernetes/overview.html)/k8s-certification-hintes.md
+
 ## Certification Hints
 
 ### Imperative vs Declarative
