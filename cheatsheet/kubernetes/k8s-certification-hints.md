@@ -1,8 +1,8 @@
 ---
-layout: default
+layout: topic
+title: certification-hints
+parent: kubernetes
 ---
-
-[cheatsheet](/cheatsheet/overview.html)/[kubernetes](/cheatsheet/kubernetes/overview.html)/k8s-certification-hintes.md
 
 ## Certification Hints
 

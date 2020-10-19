@@ -1,5 +1,7 @@
 ---
-layout: default
+layout: topic
+title: security
+parent: kubernetes
 ---
 
 

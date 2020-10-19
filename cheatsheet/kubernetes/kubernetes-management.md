@@ -1,5 +1,7 @@
 ---
-layout: default
+layout: topic
+title: management
+parent: kubernetes
 ---
 
 
