@@ -2,14 +2,6 @@
 layout: default
 ---
 
-## Kubernetes Architecture
-
-## Management
-
-## Security
-
-## Logging and Monitoring
-
 ## Certification Hints
 
 ### Imperative vs Declarative
