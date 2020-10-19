@@ -8,8 +8,9 @@ layout: default
 
 [Kubernetes Architecture](/kubernetes/kubernetes-architecture.html)
 
-[Logging and Monitoring](/kubernetes/kubernetes-logging-monitoring.html)
+[Security](/kubernetes/kubernetes-security.html)
 
 [Management](/kubernetes/kubernetes-management.html)
 
-[Security](/kubernetes/kubernetes-security.html)
+[Logging and Monitoring](/kubernetes/kubernetes-logging-monitoring.html)
+
