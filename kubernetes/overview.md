@@ -6,10 +6,10 @@ layout: default
 
 [Certification-Hints](/kubernetes/k8s-certification-hints.html)
 
-[Certification-Hints](/kubernetes/kubernetes-architecture.html)
+[Kubernetes Architecture](/kubernetes/kubernetes-architecture.html)
 
-[Certification-Hints](/kubernetes/kubernetes-logging-monitoring.html)
+[Logging and Monitoring](/kubernetes/kubernetes-logging-monitoring.html)
 
-[Certification-Hints](/kubernetes/kubernetes-management.html)
+[Management](/kubernetes/kubernetes-management.html)
 
-[Certification-Hints](/kubernetes/kubernetes-security.html)
+[Security](/kubernetes/kubernetes-security.html)
