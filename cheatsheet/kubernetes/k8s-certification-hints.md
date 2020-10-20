@@ -1,5 +1,7 @@
 ---
-layout: default
+layout: topic
+title: certification-hints
+parent: kubernetes
 ---
 
 ## Certification Hints

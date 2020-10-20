@@ -24,6 +24,10 @@
     </header>
 
     <div class="container">
+       <a href="/cheatsheet/overview.html">cheatsheet</a>/<a href="/cheatsheet/{{ page.parent | default: '/' }}/overview.html">{{ page.parent | default: home }}</a>/{{ page.title | default: none }}
+    </div>
+    <br>
+    <div class="container">
       <section id="main_content">
         {{ content }}
       </section>
