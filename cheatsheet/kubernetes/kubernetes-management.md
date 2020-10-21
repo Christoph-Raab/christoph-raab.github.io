@@ -46,5 +46,5 @@ parent: kubernetes
 - Backup:
 	- Configuration -> Git/Subversion
 	- ETCD -> ectdctl snapshot save/restore --> reconfigure static etcd pod
-     siehe auch [GitHub Anleitung] (https://github.com/mmumshad/kubernetes-the-hard-way/blob/master/practice-questions-answers/cluster-maintenance/backup-etcd/etcd-backup-and-restore.md)
+     siehe auch [GitHub Anleitung](https://github.com/mmumshad/kubernetes-the-hard-way/blob/master/practice-questions-answers/cluster-maintenance/backup-etcd/etcd-backup-and-restore.md)
   - PersistentVolume
