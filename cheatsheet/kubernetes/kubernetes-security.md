@@ -21,6 +21,69 @@ parent: kubernetes
   - Innerhalb des Clusters zw. den Komponenten
   - etcd hat eigene Zertifikate
   
+### KubeConfig
+
+- Clusters
+	- Unterschiedliche Cluster (Dev, Prod, Kunde ABC, ...)
+	- Server Certificate
+- Contexts
+	- Maps Cluster und User (Admin@Kunde ABC, Dev@Prod, ...)
+- Users  
+	- Nutzer, die Zugriff haben (Admin, Dev, ...)
+	- Bestehende Nutzer mit Rechten
+	- User Keys und Certificates
+- Wird genutzt von kubectl	
+	- Nutzt CurrentContext
+- über 'namespace' Feld im Context kann auch der Namespace gesetzt werden
+
+### RBAC
+
+- APIGroups sind Untergruppen vom kube-apiserver, die zB mit curl direkt angesprochen werden können
+	- /apis, /api, /version, /healthz, /metrics, /logs
+	- /api = core (/v1 -> namespace, pod, pvc, secret, ...)
+	- /apis = named (neu, /apps, /storage.k8s.io, ...)
+		- Alle neuen Resources sind named apis (Deployments, ReplicaSets, ...)
+- kubectl proxy, um lokal ohne Auth auf kube-apiserver zuzugreifen
+- Verbs (get, list, create, ...) beschreiben erlaubte Methoden auf dem Objekt
+
+- Role definiert Zugriffsrechte als Rolle
+	- Gelten für einen Namespace (metadata.namespace)
+	- Gelten für namespace Resourcen (Pods, Jobs, Roles, PVC, Secret, ConfigMap, ...)
+		- ``kubectl api-resources --namespaced=true``
+	- apiGroups ([""] = core)
+	- resources: zB ["pods"]
+	- verbs: zB ["list", "get"]
+	- optional: resourceNames: ["my-app1", "my-app2"] (Erlaubt nur Zugriff auf Pods mit diesen Namen)
+- RoleBinding mappt Role mit Nutzern (über subjects und roleRef)
+
+- Um herauszufinden, was ich als Nutzer kann:
+	- ``kubectl auth can-i <verb> <resource> --namespace <namespace>``
+	- ``kubectl auth can-i create deployments`` (im ns default)
+	- --as <name> um als Admin Permissions von anderem Nutzer zu testen
+
+- ClusterRole/ClusterRoleBindings
+	- Gelten für clusterweite Ressourcen (zB Node, PV, Namespace, ...)
+		- ``kubectl api-resources --namespaced=false``
+	- Sonst wie Roles und RoleBindings
+	- Können aber auch für namespaced resources genutzt werden
+
+### Image Security
+
+- Zugang zu privater Docker Registry:
+	- Secret mit Type docker-registry
+		- --docker-server=
+		- --docker-username=
+		- --docker-password=
+		- --docker-email=
+	- Im pod als imagePullSecret setzen
+	
+### Security Context
+
+- Definieren von run as user/capability für Pod oder Container
+- Falls auf Containerebene und auf Podebene eingestellt, überschreibt Containter Config die vom Pod
+- run as user: pod/container
+- capabilities: container
+
 ### Certificate Setup/Health
 
 - "Hard Way" 
@@ -84,3 +147,13 @@ parent: kubernetes
 ### NetworkPolicy
 
 - Kommunikation zw. Pods ist by default nicht eingeschränkt
+- Mit NetworkPolicy können Ingress und Egress Regeln erstellt werden
+- Genutzt werden Labels (zB app oder role) und ports
+- Werden von der Network Plugin erzwungen, die im Cluster installiert sind
+	- Unterstützt NetworkPolicy (Auszug):
+		- Kube-router
+		- Calico
+		- Romana
+		- Weave-net
+	- Nicht untersützt:
+		- Flannel
