@@ -10,6 +10,8 @@ layout: default
 
 [Management](/cheatsheet/kubernetes/kubernetes-management.html)
 
+[Storage](/cheatsheet/kubernetes/kubernetes-storage.html)
+
 [Logging and Monitoring](/cheatsheet/kubernetes/kubernetes-logging-monitoring.html)
 
 [Certification-Hints](/cheatsheet/kubernetes/k8s-certification-hints.html)
