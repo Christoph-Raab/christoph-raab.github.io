@@ -1,16 +1,31 @@
+---
+layout: topic
+title: azuresql
+parent: azure
+---
 
+## azureSQL - Server und Datenbanken
 
 - sql server dient nur als Kontrollmechanismus
-	- sql server und sql db können in unterschiedlichen Regionen liegen
+- sql server und sql db können in unterschiedlichen Regionen liegen
+	
+## Konfiguration Best Practice
+
+### MAXDOP
+
+MAXDOP should match number of vCores. 
+
+```sql
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 4;
+```
+
+[Reference](https://techcommunity.microsoft.com/t5/azure-sql/changing-default-maxdop-in-azure-sql-database/ba-p/1538528)
 	
 ## main features
 
 - system and service configurations handled by microsoft
-	
 - scalable storage
-
 - performance scaling with AI
-
 - Einfaches Konfigurieren von Netzwerk- und Zugangsbeschränkungen
 
 ## Share Responsibility für PaaS
