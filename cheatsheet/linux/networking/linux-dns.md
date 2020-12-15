@@ -6,12 +6,11 @@ parent: networking
 
 ## DNS Basics
 
-In ``/etc/hosts`` können DNS Einträge eingegeben werden, um Hostnamen auf IPs aufzulösen.
+In ``/etc/hosts`` können DNS Einträge angegeben werden, um Hostnamen auf IPs aufzulösen.
 
-Besser: DNS Server dient als Speicher für Einträge, auf den alle Hosts zugreifen können (eingetragen in ``/etc/resolv.conf``. Dadurch entfällt updaten aller Hosts.
-Lokale Einträge überschreiben aber die auf dem DNS Server.
+Ein DNS Server dient als Speicher für Einträge, auf den alle Hosts zugreifen können (``nameserver`` Eintrag in ``/etc/resolv.conf``). Dadurch entfällt updaten aller Hosts. Lokale Einträge überschreiben aber die auf dem DNS Server.
 
-Mehrere Nameserver (DNS Server) auflisten, um interne und externe DNS Resolution zu ermöglichen.
+Es können mehrere Nameserver (DNS Server) aufgelistet werden, um interne und externe DNS Resolution zu ermöglichen.
 
 ### Domain Names
 
@@ -25,7 +24,7 @@ Mit einem ``search`` Eintrag in ``/etc/resolv.conf`` kann eine Domain angegeben 
 
 ### Record Types
 
-- A Record: IP -> Hostname
+- A Record: IPv4 -> Hostname
 - AAAA Record: IPv6 -> Hostname
 - CNAME Record: Hostname -> Hostname
 
