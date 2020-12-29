@@ -5,6 +5,10 @@ Standard OutBound LoadBalancer (von kubernetes erzeugt) hingehen hat ein default
 
 ## SSH into Node mit WSL
 
+Besser ``kube-exec`` nutzen:
+
+https://github.com/mohatb/kubectl-exec
+
 ### Install openssh-client
 
 ``
@@ -24,3 +28,7 @@ ssh -i /ssh-keys/custom/id_rsa <user>@<ip>
 ``
 
 --> Bei Passwort Abfrage: Root Passwort mit dem der Private Key erzeugt wurde.
+
+## Netzwerk Regeln die für AKS notwendig sind
+
+Reference: https://docs.microsoft.com/en-us/azure/aks/limit-egress-traffic#azure-global-required-network-rules
