@@ -1,7 +1,7 @@
 ---
 layout: topic
 title: Switching And Routing
-parent: networking
+parent: linux-networking
 ---
 
 **Hinweis**
