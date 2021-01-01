@@ -6,28 +6,4 @@ parent: azure
 
 ## Kleine App zum Testen von Token Endpunkt
 
-### Code
-
-```js
-
-const abc = '';
-
-```
-
-### Installieren der Dependencies
-
-```bash
-npm install axios xyz
-```
-
-### Ausführen
-
-```bash
-node index.js
-```
-
-### Antwort
-
-```js
-{...}
-```
+[azure-access-token-helper](https://github.com/Christoph-Raab/azure-access-token-helper)
