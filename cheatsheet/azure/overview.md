@@ -4,7 +4,7 @@ layout: default
 
 ## Topics
 
-[AKS] (/cheatsheet/azure/aks.html)
+[AKS](/cheatsheet/azure/aks.html)
 
 [AzureAD](/cheatsheet/azure/azure-ad.html)
 
