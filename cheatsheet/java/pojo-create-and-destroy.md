@@ -1,3 +1,9 @@
+---
+layout: topic
+title: Create and Destroy POJO
+parent: java
+---
+
 ## Statische Factory Methoden statt Konstruktoren
 
 ### Naming conventions
