@@ -7,6 +7,16 @@ parent: kubernetes
 
 ## Logging and Monitoring
 
+Welche Metriken sind verfügbar
+	- Node Level Metrics
+	- Pod Level Metrics
+
+Wie kann man diese aggregieren
+	- EFK
+	- Prometheus
+  
+Metric-server <-- oft verwendet
+
 ### Performance Metrics
 
 Metrics-Server bekommt Daten von kubelet über cAdvisor
