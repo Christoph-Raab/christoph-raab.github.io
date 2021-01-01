@@ -1,5 +1,8 @@
-
-
+---
+layout: topic
+title: troubleshooting
+parent: kubernetes
+---
 
 ## Troubleshoot kubernetes
 
