@@ -1,4 +1,12 @@
-## Google Handbook
+---
+layout: topic
+title: Four Golden Signals
+parent: devops
+---
+
+## Four Golden Signals In Monitoring
+
+### Google Handbook
 
 > The four golden signals of monitoring are latency, traffic, errors, and saturation. If you can only measure four metrics of your user-facing system, focus on these four.
 
@@ -7,7 +15,7 @@
 - Errors — The rate of requests that fail
 - Saturation — How “full” your service is
 
-## USE Method
+### USE Method
 
 > Resource: all physical server functional components (CPUs, disks, busses, …)
 
@@ -17,7 +25,7 @@
 
 Source: http://www.brendangregg.com/usemethod.html
 
-## RED Method
+### RED Method
 
 - Rate: The number of requests per second.
 - Errors: The number of those requests that are failing.

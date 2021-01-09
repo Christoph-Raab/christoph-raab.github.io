@@ -1,3 +1,9 @@
+---
+layout: topic
+title: aks
+parent: azure
+---
+
 ## Idle Timeout
 InBound LoadBalancer hat als Standard (zumindest wenn von Istio erzeugt) eine default IdleTimeout von 4 Minuten (=Minimum).
 

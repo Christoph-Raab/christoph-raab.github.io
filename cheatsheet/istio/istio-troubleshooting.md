@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: trouble-shooting
+title: troubleshooting
 parent: istio
 ---
 

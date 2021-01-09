@@ -45,7 +45,7 @@ kubectl run nginx --image=nginx --dry-run=client -o yaml > pod.yml
 Get yml of running pod:
 
 ```bash
-kubectl get <pod> -o yaml > pod.yml
+kubectl get pod <name> -o yaml --export > pod.yml
 ```
 
 #### Deployment
