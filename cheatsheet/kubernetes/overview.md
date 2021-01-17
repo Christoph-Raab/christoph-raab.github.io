@@ -4,7 +4,9 @@ layout: default
 
 ## Topics
 
-[Kubernetes Architecture](/cheatsheet/kubernetes/kubernetes-architecture.html)
+[Kubernetes Architecture](/cheatsheet/kubernetes/kubernetes-design-install.html)
+
+[Design and Install a Kubernetes Cluster](/cheatsheet/kubernetes/kubernetes-architecture.html)
 
 [Networking](/cheatsheet/kubernetes/kubernetes-networking.html)
 
