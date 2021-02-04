@@ -6,6 +6,8 @@ parent: kubernetes
 
 ## Certification Hints
 
+[Linux Foundation PDF Guide](https://training.linuxfoundation.org/wp-content/uploads/2019/08/Important-Tips-CKA-CKAD-Master-8.5.19.pdf)
+
 ### Imperative vs Declarative
 
 #### Imperative
@@ -79,4 +81,37 @@ or
 ```bash
 kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=client -o yaml > svc.yml
 ```
+
+### YAML
+
+- Key Value Pair
+
+``
+Frucht: Apfel
+Fleisch: Huhn
+[...]
+``
+
+- Array/List
+
+``
+Früchte:
+- Orange
+- Apfel
+- Banane
+[...]
+``
+
+- Dictionary
+
+``
+Banane:
+	Kalorien: 75
+	Fett: 1
+	[...]
+``
+
+
+### Json Path with kubectl
+
 

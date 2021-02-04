@@ -30,5 +30,11 @@ Ermöglicht den kubectl top node / pod command
 StdOut/Err gehen an docker logging driver
 
 ```bash
-kubectl logs <pod> <container> --tail=20 --since=1h -f
+kubectl logs <pod> <container> 
 ```
+
+args
+- --tail=20 -> show last 20 lines
+- --since=1h -> show last hour
+- -f -> follow
+- --previous -> show logs of previous pod (bei Restart)
