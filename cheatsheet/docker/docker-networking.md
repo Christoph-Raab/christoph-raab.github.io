@@ -24,5 +24,5 @@ Bridge ist ein Interface auf dem Host und ein Switch für die Docker Container (
 Bridge Option erzeugt Pip zwischen Ddockers Bridge VNet und dem Container.
 
 Damit ist der Container von innerhalb des Hosts erreichbar. Für Erreichbarkeit von Außerhalb wird Portmapping benötigt:
-``-p <Host-Port>:<Container-Port>
+``-p <Host-Port>:<Container-Port>``
 
