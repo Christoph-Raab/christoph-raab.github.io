@@ -106,6 +106,56 @@ Book book = new Book.Builder("Joshua Bloch", "Effective Java")
                        .build();
 ```
 
+## Builder mit Stream
+
+```java
+public class PersonBuilder {
+    public String salutation;
+    public String firstName;
+    public String middleName;
+    public String lastName;
+    public String suffix;
+    public Address address;
+    public boolean isFemale;
+    public boolean isEmployed;
+    public boolean isHomewOwner;
+
+    public PersonBuilder with(
+            Consumer<PersonBuilder> builderFunction) {
+        builderFunction.accept(this);
+        return this;
+    }
+
+
+    public Person createPerson() {
+        return new Person(salutation, firstName, middleName,
+                lastName, suffix, address, isFemale,
+                isEmployed, isHomewOwner);
+    }
+}
+```
+
+usage:
+
+```java
+Person person = new PersonBuilder()
+        .with($ -> {
+            $.salutation = "Mr.";
+            $.firstName = "John";
+            $.lastName = "Doe";
+            $.isFemale = false;
+            $.isHomewOwner = true;
+            $.address =
+                new PersonBuilder.AddressBuilder()
+                    .with($_address -> {
+                        $_address.city = "Pune";
+                        $_address.state = "MH";
+                        $_address.pin = "411001";
+                    }).createAddress();
+        })
+        .createPerson();
+```
+
 ## Singleton Eigenschaft mit privatem Konstruktor erzwingen
 
 ### statischer Factory Method:
@@ -130,6 +180,7 @@ public enum TheOnlyOne {
 }
 ```
 
-## Reference 
+## References
 
-Effective Java by Joshua Bloch
+'Effective Java' by Joshua Bloch
+https://medium.com/beingprofessional/think-functional-advanced-builder-pattern-using-lambda-284714b85ed5
