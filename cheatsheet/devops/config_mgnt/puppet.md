@@ -13,16 +13,16 @@
 - Inhalt nach setup
   - data: Enthält Hiera Data
   - files: Static Files, zB nginx.conf
-  - manifests: Konfigurationsdateien
+  - manifests: Konfigurationsdateien (Classes)
   - templates: Templates, um auf den Nodes Files zu erzeugen
 
 ### Classes 
 - Classes beinhalten Resource Types 
-- liegen in ``/etc/puppetlabls/code/enviroments/<env>/modules/<modul_name>/manifests/install.pp``
+- liegen in ``/etc/puppetlabls/code/enviroments/<env>/modules/<modul_name>/manifests/``
 - Resource Types beinhaltet Attribute, die die Kompenete konfigurieren
 - Validieren mit ``puppet parser validate manifests/install.pp``
 
-#### Bsp class
+#### Install package
 ```
 class nginx::install {
   package { 'install_nginx':
@@ -36,7 +36,7 @@ class nginx::install {
 
 - Jedes Modul braucht eine init.pp Class
 - Anlegen mit ``pdk new class <modul_name>``
-- Beinhaltet alle Classes, die es zu dem Modul gibt
+- Beinhaltet alle Classes, die zu dem Modul gehören
 - Reihenfolge der Ausführung der Classes wird hier definiert
   - ``->`` = 'als nächstes'
   - ``~>`` = 'als nächstes, wenn vorheriges sich geändert hat'
@@ -52,22 +52,6 @@ class nginx {
   ~> Class['nginx::service']
 }
 ```
-
-### Site.pp
-
-- Liegt in ``/etc/puppetlabls/code/enviroments/<env>/manifests``
-- Mappt Module auf Agent Nodes -> Welches Modul soll auf welchem Node installiert werden
-
-```
-node <host> {
-  include nginx
-}
-```
-
-### Install Modules
-
-- Catalog Converge führt alle Module für den Agent zusammen
-- ``puppet agent -t`` auf dem Agent Node ausführen
 
 ### Static File Class
 
@@ -101,3 +85,18 @@ class nginx::service {
 }
 ```
 
+### Site.pp
+
+- Liegt in ``/etc/puppetlabls/code/enviroments/<env>/manifests``
+- Mappt Module auf Agent Nodes -> Welches Modul soll auf welchem Node installiert werden
+
+```
+node <host> {
+  include nginx
+}
+```
+
+### Install Modules
+
+- Catalog Converge führt alle Module für den Agent zusammen
+- ``puppet agent -t`` auf dem Agent Node ausführen
