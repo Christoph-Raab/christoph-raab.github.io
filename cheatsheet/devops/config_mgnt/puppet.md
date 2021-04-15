@@ -47,23 +47,32 @@ class nginx::install (
 
 ```
 class nginx ( 
+  # params.pp data:
   $package_name  = $nginx::params::package_name,
   $config_path   = $nginx::params::config_path,
   $config_source = $nginx::params::config_source,
   $service_name  = $nginx::params::service_name,
+  $vhosts_dir    = $nginx::params::vhosts_dir,
+  # hiera data:
   String $package_ensure,
   String $config_ensure,
   String $service_ensure,
   Boolean $service_enable,
   Boolean $service_hasrestart,
+  String $vhosts_port,
+  String $vhosts_root,
+  String $vhosts_ensure,
+  String $vhosts_name,
 ) inherits nginx::params {
   contain nginx::install
   contain nginx::config
   contain nginx::service
+  contain nginx::vhosts
   
   Class['nginx::install'] 
   -> Class['nginx::config']
   ~> Class['nginx::service']
+  -> Class['nginx::vhosts']
 }
 ```
 
@@ -139,10 +148,12 @@ class nginx::params {
     'RedHead': {
       $config_path = '/etc/nginx/nginx.conf'
       $config_source = 'puppet:///modules/nginx/rh-nginx.conf'
+      $vhosts_dir = '/etc/nginx/conf.d'
     }
     'Debian': {
       $config_path = '/etc/nginx/nginx.conf'
       $config_source = 'puppet:///modules/nginx/deb-nginx.conf'
+      $vhosts_dir = '/etc/nginx/sites-available'
     }
   }
 }
@@ -171,4 +182,63 @@ nginx::config_ensure: 'present'
 nginx::service_ensure: 'running'
 nginx::service_enable: true
 nginx::service_hasrestart: true
+nginx::vhosts_ensure: 'present'
 ```
+
+### Node Data
+
+- Parameter können auch für jeden Node einzeln definiert werden
+
+#### Bespiel vhost
+
+``/etc/puppetlabs/code/environmanets/<env>/modules/nginx/manifests/vhost.pp``:
+
+```
+class nginx::vhost (
+  $vhost_dir = $nginx::params::vhost_dir,
+) inherits nginx::params {
+  file { "${nginx::vhost_name}.conf":
+    content => epp('nginx/vhosts.conf.epp'),
+    ensure  => $nginx::vhosts_ensure,
+    path    => "${vhosts_dir}/${nginx::vhost_name}.conf",
+  }
+  
+  file { "$nginx::vhosts_root":
+    ensure => 'directory',
+  }
+}
+```
+
+``/etc/puppetlabs/code/environmanets/<env>/modules/nginx/templates/vhosts.conf.epp``:
+
+```
+server {
+  listen <%= $nginx::vhosts_port %>;
+  list [::]<%= $nginx::vhosts_port %>;
+  
+  root <%= $nginx::vhosts_root %>;
+  server_name <%= $nginx::vhosts_name %> www.<%= $nginx::vhosts_name %>;
+  }
+}
+```
+
+``/etc/puppetlabs/code/environmanets/<env>/hiera.yaml``:
+
+- Enthält Referenz zu Per-node data, default ``./data/nodes``
+- Darin wird ein yaml file angelegt, dass den Namen des ``trusted.certname`` (siehe ``facter``) des Nodes hat
+
+``/etc/puppetlabs/code/environmanets/<env>/data/nodes/<trusted.certname>.yaml``:
+
+```
+---
+nginx::vhosts_port: '80'
+nginx::vhosts_root: '/var/www/'
+nginx::vhost_name: 'example.com'
+nginx::vhosts_ensure: 'present'
+```
+
+## Puppet Forge
+
+- [Puppet Forge](https://forge.puppet.com)
+- Enthält offizielle Module, die importiert werden können
+- Module werden mit Badges markiert
