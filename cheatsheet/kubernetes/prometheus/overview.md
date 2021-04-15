@@ -15,7 +15,11 @@
 ### Inhalte
 
 [Architecture](architecture.html)
+
 [Konfig in Kubernetes](kubernetes-config.html)
+
 [PromQL](promql.html)
+
 [Alerting](alerting.html)
+
 [Monitoring](monitoring.html)
