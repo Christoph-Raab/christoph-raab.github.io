@@ -21,6 +21,15 @@ ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 4;
 
 [Reference](https://techcommunity.microsoft.com/t5/azure-sql/changing-default-maxdop-in-azure-sql-database/ba-p/1538528)
 	
+### Idle Connection Settings
+
+> Idle by the Azure SQL Gateway, where TCP keepalive messages might be occurring (making the connection not idle from a TCP perspective), but not had an active query in 30 minutes. In this scenario, the Gateway will determine that the TDS connection is idle at 30 minutes and terminate the connection.
+
+[Reference](https://docs.microsoft.com/en-us/sql/connect/jdbc/connecting-to-an-azure-sql-database?view=sql-server-ver15)
+
+So pooled connections should be marked idle after max of 30 minutes. 
+[More on Connection Pools with AzureSQL](https://docs.microsoft.com/en-us/sql/connect/ado-net/sql-server-connection-pooling?view=sql-server-ver15)
+	
 ## main features
 
 - system and service configurations handled by microsoft
