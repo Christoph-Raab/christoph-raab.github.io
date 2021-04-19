@@ -2,7 +2,7 @@
 
 - Linux nutzt den syslog standard für Logging von Nachrichten von Services/Prozessen
 - Jede Nachricht hat ein Label ``<Facility>`` mit ``<Severity>``
-  - Facility: Hinweise auf den Ursprung, zB ``kern`` -> Kernel oder ``mail`` -> Mail
+  - Facility: Verweis auf den Ursprung, zB ``kern`` -> Kernel oder ``mail`` -> Mail
   - Severity: 
     - 0 Emergency - emerg / panic 
     - 1 Alert - alert
@@ -20,7 +20,7 @@
     - Wildcard werden unterstützt, zB ``mail.*``
     - Severity kann auch weggelassen werden, zB ``mail.*`` = ``mail``
     - Ignorieren alles Messages über ``.none``, zB ``mail.none``
-    - Können aneinandergereiht werden, zB ``*.*;mail.info;auth.none`` (= alles, mail nur info, auth nichts)
+    - Können aneinandergereiht werden, zB ``*.*;mail.info;auth.none`` (= alles für alles, mail nur info, auth nichts)
   - Konfigurieren, wohin die Nachrichten geschrieben werden 
     - ``<Facility>.<Severity>  <path-to-logfile>``, zb ``mail.*  /var/log/mail.log``
     - Es können auch mehrere Ausgabepfade für unterschiedliche Severity Level konfiguriert werden
@@ -28,7 +28,7 @@
       mail.info   /var/log/mail.info
       mail.warn   /var/log/mail.warn
       ```
-    - ``-`` am Anfang vom Pfad aktiviert Caching, dabei können aber log Nachrichten verloren gehen
+    - ``-`` am Anfang vom Pfad aktiviert Caching. Verbessert die Performace, dabei können aber log Nachrichten verloren gehen
 - Eigene Syslog Nachrichten schreiben
   - Über ``logger`` Befehl
   - ``-p`` Argument, um FACILITY.SEVERIFY mitzugeben
@@ -49,14 +49,15 @@
     # create new (empty) log files after rotating
     create
 
-    # uncomment if you want your log files comressed
+    # uncomment if you want your log files compressed
     #compress
 
-    # packages drop log rotatoin information into this directory
+    # packages drop log rotation information into this directory
     include /etc/logrotate.d
     ```
   - Weitere Konfigurationen können je Prozess konfiguriert werden
     ```bash
+    cat /etc/logrotate.d/rsyslog
     /var/log/syslog
     {
         rotate 7
@@ -68,18 +69,22 @@
     /var/log/mail.warn
     ...
     {
-    ...
+      rotate 4
+      ...
+      postrotate
+          reload rsyslog > /dev/null 2>&1 || true
+      endscript
     }
     ```
   - Optionen
-    - ratate ``<count>`` - Rotate Logs ``<count>`` mal bevor sie gelöscht werden
+    - rotate ``<count>`` - Rotiere Logs ``<count>`` mal bevor sie gelöscht werden
     - daily - tägliche rotieren
     - weekly - wöchentlich rotieren
     - missingok - Falls ein Log File fehlt, keinen Fehler verursachen
     - notifempty - Leere Files nicht rotieren
     - compress - Rotierte Files komprimieren
-    - postrotate \n xyz \n endscript - xyz wird am Ende der Rotation mit ``/bin/sh`` ausgeführt
-  - Rotation testen durch force
+    - postrotate xyz endscript - xyz wird am Ende der Rotation mit ``/bin/sh`` ausgeführt
+  - Neue Rotation Konfiguration testen
     - ``logrotate -fv /etc/logrotate.conf``
     - ``-f`` force rotate
     - ``-v`` verbose
