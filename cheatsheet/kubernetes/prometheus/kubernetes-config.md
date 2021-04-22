@@ -25,11 +25,37 @@ Damit jeder Pod/Service/Node, der die Annotation ``prometheus.io/scrape: 'true'`
 
 ### Konfiguration
 
-
-### Grafana
-
+- Konfiguration mit yml file (Referenz in der ConfigMap) mit
+  - globaler Konfiguration (scrape_interval, scrape_timeout)
+  - scrape Konfiguration (jobs mit statischer/dynamischer Service Discovery)
+  - alerting Konfiguration (Konfiguration für AlertManager)
+- Service Discovery in Kubernetes nutzt Kubernetes API um Targets zu finden
+- Mit ``relabel_configs`` können bestimmte Endpoints gefilter oder umgeschrieben werden
+- Mehr in den [Docs](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
 
 ### NodeExporter
 
+- Software, die auf dem Node installiert wird
+- Prometheus kann damit Hardware und OS Metriken abfragen, zB CPU, Memory, DiskSpace, Kernel Metriken, ...
+- Nicht als root laufen lassen, sondern neuer User zB prometheus
+- Als Service auf dem Node anlegen
+  - service file in ``/etc/systemd/system/node_exporter_service``
+  - Enthält Directory, wo das Node Exporter binary liegt und dessen Nutzer
+  - systemclt daemon reloaden, service enablen und starten
+- Mehr in den [Docs](https://prometheus.io/docs/guides/node-exporter/)
 
-### Expression Browser
+### Grafische Oberfläche
+
+- Dort kann man
+  - Konfiguration einsehen
+  - Installierte Version einsehen
+  - Alerts, Rules und Targets einsehen
+  - Expression Browser ermöglicht ausführen von Query mit PromQL und anzeigen des Ergebnisses + Visualisierung
+
+### Grafana
+
+- Setup mit Deployment und Service
+- Neue data source 'Prometheus' anlegen
+- Dashboard aufsetzen:
+  - Von [Grafana Dashboards](https://grafana.com/grafana/dashboards) importieren (Manchmal aber veraltete Versionen!)
+  - Besser Grafana Dashboard als Vorlage verwenden und daraus eigenes Dashboard erstellen
