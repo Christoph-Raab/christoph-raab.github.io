@@ -49,4 +49,15 @@
 
 ### File System Tables
 
-- 
+- ``/etc/fstab`` kontolliert, wo Devices ins Linux Filesystem mit welchen Optionen gemountet werden
+- Enthält 6 Spalten:
+  - device -> Pfad zum Device, Label für den Device oder ein UUID des Device
+  - mount point -> Pfad wohin der Device gemountet wird
+  - filesystem -> Art des Filesystems, muss dem entsprechen, der beim Anlegen definiert wurde
+  - options -> Normalerweise default, mehrere: mit Komma trennen
+  - dump -> 0: dump erstellt kein Backup, 1: dump erstellt Backup (dump wird kaum noch verwendet)
+  - fsck -> ``fsck`` prüft ob und in welcher Reihenfolge das Filesystem beim Booten geprüft werden soll. 0: skip, 1: check first, 2: check next. Best Practice: Set ``/`` to 1, alle anderen auf 2
+- Devices anzeigen:
+  - ``lsblk -f`` UID + Label
+  - ``blkid`` nur UID
+- Devices labeln: Abhängig vom Filesystem, für ext -> ``e2label``
