@@ -25,6 +25,8 @@
 - irate(): 
   - Berechnet per-second instant rate of increase of time series in a range vector
   - Kann zB Graph erzeugen, wenn es sonst nicht möglich wäre
+- absend():
+  - Gibt 1 zurück, wenn es für ein Query keine Ergebnisse gibt
 
 - Auch Gruppierung (by) und Verschachtelungen (avg(irate()) möglich
 
