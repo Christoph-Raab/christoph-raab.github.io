@@ -6,6 +6,12 @@ parent: istio
 
 ## Sidecar debugging
 
+### View dashboard
+
+```bash
+istioctl d envoy <pod-name>.<namespace>
+```
+
 ### Set Logging Level of the sidecar
 
 For all components, eg. level trace
