@@ -107,17 +107,17 @@ Immer wenn service erzeugt wird, wird von Kubernetes ein DNS Name erzeugt.
 Der Name des Service wird dabei auf dessen IP gemappt. -> ``curl http://my-service``
 
 Äquivalente Namen:
-- my-service
-- my-service.<namespace>
-- my-service.<namespace>.svc
-- my-service.<namespace>.svc.cluster.local
+- `my-service`
+- `my-service.<namespace>`
+- `my-service.<namespace>.svc`
+- `my-service.<namespace>.svc.cluster.local`
 
 Für Pods werden standardmäßig keine DNS Records erzeugt. Kann aber aktiviert werden.
 zB für Pod mit ip 10.244.2.5:
-- 10-244-2-5
-- 10-244-2-5.<namespace>
-- 10-244-2-5.<namespace>.pod
-- 10-244-2-5.<namespace>.pod.cluster.local
+- `10-244-2-5`
+- `10-244-2-5.<namespace>`
+- `10-244-2-5.<namespace>.pod`
+- `10-244-2-5.<namespace>.pod.cluster.local`
 
 ### CoreDNS in Kubernetes
 
