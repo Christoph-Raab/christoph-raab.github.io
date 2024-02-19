@@ -3,7 +3,7 @@
 ### Instrumentation
 
 - Code in der App definiert den Metrik Endpoint
-- Prometheus stellt bestimmte [Client Liraries bereit](https://prometheus.io/docs/instrumenting/clientlibs/)
+- Prometheus stellt bestimmte [Client Libraries bereit](https://prometheus.io/docs/instrumenting/clientlibs/)
 
 ### Collecting Application Metrics
 
